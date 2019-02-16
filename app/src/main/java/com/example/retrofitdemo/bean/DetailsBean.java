@@ -1,6 +1,7 @@
 package com.example.retrofitdemo.bean;
 
 public class DetailsBean {
+
     private ResultBean result;
     private String message;
     private String status;
@@ -30,6 +31,7 @@ public class DetailsBean {
     }
 
     public static class ResultBean {
+
         private String categoryId;
         private String categoryName;
         private int commentNum;

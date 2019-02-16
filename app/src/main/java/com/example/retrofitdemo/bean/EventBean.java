@@ -1,5 +1,6 @@
 package com.example.retrofitdemo.bean;
 
+
 public class EventBean {
 
     private String name;

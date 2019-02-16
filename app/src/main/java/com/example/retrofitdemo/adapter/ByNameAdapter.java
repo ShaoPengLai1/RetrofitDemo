@@ -1,6 +1,7 @@
 package com.example.retrofitdemo.adapter;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +10,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.retrofitdemo.MainActivity;
+import com.example.retrofitdemo.application.App;
 import com.example.retrofitdemo.bean.ByName;
+import com.example.retrofitdemo.entity.ShopEntityDao;
+import com.example.retrofitdemo.gen.DaoMaster;
+import com.example.retrofitdemo.gen.DaoSession;
+import com.example.retrofitdemo.gen.ShopEntityDaoDao;
+import com.example.retrofitdemo.network.GreenDaoUtils;
+import com.example.retrofitdemo.network.NetUtil;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.example.retrofitdemo.R;
 
@@ -20,11 +29,12 @@ import retrofit2.http.Url;
 
 public class ByNameAdapter extends RecyclerView.Adapter<ByNameAdapter.ViewHolder> {
     private Context mContext;
-    private List<ByName.ResultBean> mList;
+    private List<ByName.ResultBean> mList=new ArrayList<>();
+
 
     public ByNameAdapter(Context mContext) {
         this.mContext = mContext;
-        mList=new ArrayList<>();
+        //mList=new ArrayList<>();
     }
 
     public void setData(List<ByName.ResultBean> datas) {
@@ -34,6 +44,7 @@ public class ByNameAdapter extends RecyclerView.Adapter<ByNameAdapter.ViewHolder
         }
         notifyDataSetChanged();
     }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -56,12 +67,17 @@ public class ByNameAdapter extends RecyclerView.Adapter<ByNameAdapter.ViewHolder
                 }
             }
         });
+
+
     }
 
     @Override
     public int getItemCount() {
         return mList.size();
     }
+
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private SimpleDraweeView imageView;
         private TextView name,price,sayMo;
